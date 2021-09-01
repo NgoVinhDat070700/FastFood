@@ -21,23 +21,38 @@
         <div class="row">
             <div class="col-lg-8 col-sm-12">
                 <div class="contact-form-right">
+                @if($errors->any())
+                <div>
+                    <ul>
+                        @foreach($errors->all() as $error)
+                        <li style="color: red;">{{$error}}<li>
+                        @endforeach
+                    </ul>
+                </div>
+
+                @endif
+                @if(session()->has('message'))
+                <div class="alert alert-primary" role="alert">
+                    {{ session()->get('message')}}
+                </div>
+                @endif
                     <h2>GET IN TOUCH</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed odio justo, ultrices ac nisl sed, lobortis porta elit. Fusce in metus ac ex venenatis ultricies at cursus mauris.</p>
                     <form name="myForm" id="myForm" action="{{route('Contact_Us.store')}}" method="POST">
                         @csrf
-                        <p style="color: #5E5B5B; font-size: 22px;">Tên của bạn*<br><input type="text" name="name" id="name" onFocus="mau(this)" onBlur="kiemtraname()" style="height: 25px; width: 600px;"></p>
+                        <p style="color: #5E5B5B; font-size: 22px;">Tên của bạn*<br><input type="text" name="name" id="name"  style="height: 25px; width: 600px;"></p>
                         <p id="erroname"></p>
-                        <p style="color: #5E5B5B; font-size: 22px;">Số điện thoại*<br><input type="text" onFocus="mau(this)" onBlur="kiemtrasdt()" value="" name="sodienthoai" id="sodienthoai" style="height: 25px; width: 600px; z-index: 9999;"></p>
+                        <p style="color: #5E5B5B; font-size: 22px;">Số điện thoại*<br><input type="text"   value="" name="sodienthoai" id="sodienthoai" style="height: 25px; width: 600px; z-index: 9999;"></p>
                         <p id="errodt"></p>
-                        <p style="color: #5E5B5B; font-size: 22px;">Email*<br><input type="text" name="email" id="email" onFocus="mau(this)" onBlur="kiemtraemail()" style="height: 25px; width: 600px;"></p>
+                        <p style="color: #5E5B5B; font-size: 22px;">Email*<br><input type="text" name="email" id="email"  style="height: 25px; width: 600px;"></p>
                         <p id="erroemail"></p>
-                        <p style="color: #5E5B5B; font-size: 22px;">Chủ đề*<br><input type="text" name="chude" id="chude" onFocus="mau(this)" onBlur="kiemtraemail()" style="height: 25px; width: 600px;"></p>
+                        <p style="color: #5E5B5B; font-size: 22px;">Chủ đề*<br><input type="text" name="chude" id="chude" style="height: 25px; width: 600px;"></p>
                         <p id="erroemail"></p>
                         <p style="color: #5E5B5B; font-size: 22px;">Hãy cho chúng tôi biết về nhu cầu của bạn*<br>
-                            <textarea rows="6" cols="80" onBlur="kiemtranc()" name="loinhan" id="loinhan"></textarea>
+                            <textarea rows="6" cols="80" name="loinhan" id="loinhan"></textarea>
                         </p>
                         <p id="erronc"></p>
-                        <input type="submit" name="button" value="ĐĂNG KÝ" style="height: 50px; width: 300px; background: red; border:none; border-radius: 5px;">
+                        <input type="submit" name="button" value="ĐĂNG KÝ" style="height: 50px; width: 300px; background: red; border:none; border-radius: 5px;cursor: pointer;">
                     </form>
                 </div>
             </div>

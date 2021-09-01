@@ -70,3 +70,6 @@ Route::post('/Admin/tintuc/',[TinTucController::class,'store'])->name('Admin/tin
 Route::get('/Admin/tintuc/update/{id}',[TinTucController::class,'edit'])->name('Admin/tintuc.edit');
 Route::put('/Admin/tintuc/update/{id}',[TinTucController::class,'update'])->name('Admin/tintuc.update');
 Route::delete('/Admin/tintuc/{id}',[TinTucController::class,'destroy'])->name('Admin/tintuc.index');
+//Shop
+Route::get('/Shop',[App\Http\Controllers\ShopController::class,'index'])->name('Shop');
+Route::get('/Shop_Detail/{id}',[App\Http\Controllers\ShopController::class,'shop_detail'])->name('Shop_Detail');
