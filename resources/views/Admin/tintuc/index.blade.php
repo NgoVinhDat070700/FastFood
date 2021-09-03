@@ -30,7 +30,7 @@
             </span>
             - 
             <span>
-                <form action="{{route('Admin/tintuc.index',$tt->id)}}" method="POST">
+                <form action="{{route('Admin/tintuc.delete',$tt->id)}}" method="POST">
                 @csrf 
                 @method("delete")
                 <button type="submit">Delete</button>

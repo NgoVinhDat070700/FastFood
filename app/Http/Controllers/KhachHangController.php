@@ -52,7 +52,7 @@ class KhachHangController extends Controller
             $khachhang = DB::table('khachhang')->where('email',$request->InputEmail1)->first();
             if(!$khachhang)
             {
-                $newkhachhang = new KhachHang();
+                $newkhachhang = new User();
                 $newkhachhang->tenkhachhang=$request->Inputname;
                 $newkhachhang->password = $request->InputPassword1;
                 $newkhachhang->email = $request->InputEmail1;

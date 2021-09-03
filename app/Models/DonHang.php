@@ -9,5 +9,9 @@ class DonHang extends Model
 {
     use HasFactory;
     protected $table = "donhangs";
-    protected $fillable = ["user_id","thongtin","diachi","hinhthucthanhtoan","trangthai"];
+    protected $fillable = ["user_id","thongtin","diachi","sodienthoai","hinhthucthanhtoan","trangthai"];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

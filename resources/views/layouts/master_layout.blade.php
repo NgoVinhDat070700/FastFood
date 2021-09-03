@@ -58,7 +58,42 @@
                     </div>
                     <div class="our-link">
                         <ul>
-                            <li><a href="#"><i class="fa fa-user s_color"></i> My Account</a></li>
+                        @if(Route::has('login'))
+									@auth
+										@if(Auth::user()->utype ==='ADM')
+											<li class="menu-item menu-item-has-children parent">
+												<a title="My Account" href="#">My Account ({{Auth::user()->name}})<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+												<ul class="submenu curency">
+													<li class="menu-item">
+														<a title="DashBoard Admin" href="{{route('Admin/sanpham.index')}}">Dashboard</a>
+													</li>
+													<li class="menu-item">
+															<a href="{{route('logout')}}" onclick="event.preventDefault();document.getElementById('logout-form').submit()">Logout</a>
+														</li>
+													<form id="logout-form" method="POST" action="{{route('logout')}}">
+													@csrf
+													</form>
+												</ul>
+											</li>
+										@else
+										<li class="menu-item menu-item-has-children parent">
+												<ul class="submenu curency">
+                                                <a title="My Account" href="#">My Account ({{Auth::user()->name}})<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+													<li class="menu-item">
+															<a href="{{route('logout')}}" onclick="event.preventDefault();document.getElementById('logout-form').submit()">Logout</a>
+														</li>
+													<form method="POST" action="{{route('logout')}}" id="logout-form">
+                                                    @csrf
+                                                    <a href="{{route('logout')}}" onclick="event.preventDefault();document.getElementById('logout-form').submit()">Logout</a>
+													</form>
+												</ul>
+										</li>
+										@endif
+									@else
+										<li class="menu-item"><a title="Register or Login" href="{{route('login')}}">Login</a></li>
+										<li class="menu-item"><a title="Register or Login" href="{{route('register')}}">Register</a></li>
+									@endif
+								@endif
                             <li><a href="#"><i class="fas fa-location-arrow"></i> Our location</a></li>
                             <li><a href="#"><i class="fas fa-headset"></i> Contact Us</a></li>
                         </ul>
@@ -125,18 +160,17 @@
                 <div class="collapse navbar-collapse" id="navbar-menu">
                     <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
                         <li class="nav-item active"><a class="nav-link" href="/Home">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
                         <li class="dropdown">
                             <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SHOP</a>
                             <ul class="dropdown-menu">
 								<li><a href="{{route('Shop')}}">Sidebar Shop</a></li>
                                 <li><a href="/GioHang">Cart</a></li>
                                 <li><a href="{{route('Checkout')}}">Checkout</a></li>
-                                <li><a href="my-account.html">My Account</a></li>
+                                <li><a href="{{route('MyAccount')}}">My Account</a></li>
                                 <li><a href="wishlist.html">Wishlist</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{route('Blog')}}">Blog</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{route('Contact-Us')}}">Contact Us</a></li>
                     </ul>
                 </div>
